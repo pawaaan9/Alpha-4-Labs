@@ -1,16 +1,38 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Poppins,
+  Smooch_Sans,
+  Saira,
+  Exo_2,
+  Audiowide,
+  Michroma,
+} from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/navbar";
+import LinesBackground from "./components/lines-bg";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: [
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+  ],
+  style: ["normal", "italic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const smoochSans = Smooch_Sans({ variable: "--font-smooch", subsets: ["latin"], weight: ["400"] });
+const saira = Saira({ variable: "--font-saira", subsets: ["latin"], weight: ["400"] });
+const exo2 = Exo_2({ variable: "--font-exo2", subsets: ["latin"], weight: ["400"] });
+const audiowide = Audiowide({ variable: "--font-audiowide", subsets: ["latin"], weight: "400" });
+const michroma = Michroma({ variable: "--font-michroma", subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,15 +41,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${poppins.variable} ${smoochSans.variable} ${saira.variable} ${exo2.variable} ${audiowide.variable} ${michroma.variable} min-h-screen flex flex-col antialiased`}>
+        <LinesBackground />
+        <Navbar />
+        <main className="flex-1 flex flex-col">{children}</main>
       </body>
     </html>
   );

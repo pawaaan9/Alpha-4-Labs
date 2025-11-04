@@ -1,26 +1,90 @@
 @import "tailwindcss";
 
+/* Brand theme for Alpha 4 Labs - purple/pink metaverse vibe */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0314; /* deep space purple */
+  --foreground: #f3f3f5;
 }
 
 @theme inline {
+  /* brand colors */
+  --color-primary: #7c3aed; /* violet-600 */
+  --color-secondary: #ec4899; /* pink-500 */
+  --color-accent: #a78bfa; /* violet-300 */
+  --color-surface: #120a1e; /* panel surface */
+
+  /* expose background/foreground + fonts */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-michroma);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Light scheme fallback */
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #111827;
   }
 }
 
+/* App baseline */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-michroma), ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+
+/* Utility to create a subtle glass panel */
+.glass {
+  background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
+    );
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+/* Smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+
+/* Animated diagonal lines overlay */
+.animated-lines {
+  background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 48px);
+  animation: lines-drift 40s linear infinite;
+}
+
+@keyframes lines-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 360px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-lines { animation: none; }
+}
+
+/* Utility classes to opt into display fonts if needed */
+.font-audiowide { font-family: var(--font-audiowide), "Audiowide", system-ui, sans-serif; }
+.font-michroma { font-family: var(--font-michroma), "Michroma", system-ui, sans-serif; }
+.font-smooch { font-family: var(--font-smooch), "Smooch Sans", system-ui, sans-serif; }
+.font-saira { font-family: var(--font-saira), "Saira", system-ui, sans-serif; }
+.font-exo2 { font-family: var(--font-exo2), "Exo 2", system-ui, sans-serif; }
+
+/* Typography helpers */
+.heading-display {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.1;
+}
+
+.desc {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.desc-sm {
+  font-size: 0.875rem;
+  opacity: 0.8;
 }
