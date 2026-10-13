@@ -27,10 +27,10 @@ export default function Hero() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#products"
+                href="#works"
                 className="rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 font-semibold text-white shadow hover:opacity-95"
               >
-                Explore products
+                View our work
               </a>
               <a
                 href="#contact"
