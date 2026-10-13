@@ -1,19 +1,31 @@
-import Footer from "./components/footer";
 import Hero from "./components/hero";
-import PreviousWorks from "./components/previous-works";
+import TechMarquee from "./components/tech-marquee";
 import Services from "./components/services";
-import Objectives from "./components/objectives";
+import TextBand from "./components/text-band";
+import Process from "./components/process";
+import FeaturedWork from "./components/featured-work";
+import Industries from "./components/industries";
+import Engagement from "./components/engagement";
+import TechStack from "./components/tech-stack";
+import WhyUs from "./components/why-us";
+import Faq from "./components/faq";
 import Contact from "./components/contact";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <Hero />
-      <PreviousWorks />
+      <TechMarquee />
       <Services />
-      <Objectives />
+      <FeaturedWork />
+      <TextBand />
+      <Process />
+      <WhyUs />
+      <Industries />
+      <TechStack />
+      <Engagement />
+      <Faq />
       <Contact />
-      <Footer />
-    </div>
+    </>
   );
 }

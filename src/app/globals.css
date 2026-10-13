@@ -1,90 +1,159 @@
 @import "tailwindcss";
 
-/* Brand theme for Alpha 4 Labs - purple/pink metaverse vibe */
+/* Brand theme for Alpha 4 Labs: flat colours only, no gradients */
 :root {
-  --background: #0b0314; /* deep space purple */
-  --foreground: #f3f3f5;
+  --background: #0a0a0f;
+  --foreground: #ededf2;
 }
 
 @theme inline {
   /* brand colors */
-  --color-primary: #7c3aed; /* violet-600 */
-  --color-secondary: #ec4899; /* pink-500 */
-  --color-accent: #a78bfa; /* violet-300 */
-  --color-surface: #120a1e; /* panel surface */
+  --color-primary: #8b5cf6; /* violet accent */
+  --color-primary-hover: #7c4dec;
+  --color-accent: #a78bfa; /* lighter violet for text on dark */
+  --color-surface: #111118; /* cards */
+  --color-surface-2: #18181f; /* raised cards / hover */
+  --color-line: #24242d; /* borders */
+  --color-muted: #9b9ba8; /* secondary text */
 
   /* expose background/foreground + fonts */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-michroma);
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-/* Light scheme fallback */
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ffffff;
-    --foreground: #111827;
-  }
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* App baseline */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-michroma), ui-sans-serif, system-ui, -apple-system, Segoe UI,
-    Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
-    "Segoe UI Emoji";
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, Segoe UI,
+    Roboto, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-/* Utility to create a subtle glass panel */
-.glass {
-  background: linear-gradient(
-      to bottom right,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0.02)
-    );
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
-  backdrop-filter: blur(8px);
+h1, h2, h3, h4 {
+  letter-spacing: -0.025em;
 }
 
-/* Smooth scrolling for anchor links */
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Smooth scrolling for anchor links, offset for the sticky navbar */
 html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 6rem; }
+
+/* Faint line grid that fades towards the edges */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 30%, transparent 100%);
+}
+
+/* Dot pattern for cards */
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Hollow, outlined text for large decorative words */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(237, 237, 242, 0.22);
+}
+
+/* Small mono label above section headings */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
 
 /* Animated diagonal lines overlay */
 .animated-lines {
-  background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 48px);
+  background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 48px);
   animation: lines-drift 40s linear infinite;
 }
+
+/* Scroll reveal (toggled by the <Reveal> component) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-delayed { animation: float 6s ease-in-out 1.5s infinite; }
+.animate-marquee { animation: marquee 45s linear infinite; }
+.animate-marquee-reverse { animation: marquee 45s linear infinite reverse; }
+.animate-blink { animation: blink 1s step-end infinite; }
+.animate-spin-slow { animation: spin 30s linear infinite; }
+.animate-float-in { animation: float-in 0.45s backwards; }
 
 @keyframes lines-drift {
   0% { background-position: 0 0; }
   100% { background-position: 360px 0; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animated-lines { animation: none; }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Utility classes to opt into display fonts if needed */
-.font-audiowide { font-family: var(--font-audiowide), "Audiowide", system-ui, sans-serif; }
-.font-michroma { font-family: var(--font-michroma), "Michroma", system-ui, sans-serif; }
-.font-smooch { font-family: var(--font-smooch), "Smooch Sans", system-ui, sans-serif; }
-.font-saira { font-family: var(--font-saira), "Saira", system-ui, sans-serif; }
-.font-exo2 { font-family: var(--font-exo2), "Exo 2", system-ui, sans-serif; }
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes float-in {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animated-lines,
+  .animate-float,
+  .animate-float-delayed,
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .animate-blink,
+  .animate-spin-slow,
+  .animate-float-in { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* FAQ accordion: rotate the plus icon when open */
+details[open] .faq-icon { transform: rotate(45deg); }
+details summary::-webkit-details-marker { display: none; }
 
 /* Typography helpers */
 .heading-display {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 1.1;
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+  line-height: 1.02;
 }
 
 .desc {
-  font-size: 0.95rem;
-  opacity: 0.8;
-}
-
-.desc-sm {
-  font-size: 0.875rem;
-  opacity: 0.8;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-muted);
 }
