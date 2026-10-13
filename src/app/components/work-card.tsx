@@ -15,13 +15,13 @@ export default function WorkCard({ work, index = 0 }: { work: Work; index?: numb
         <span className="absolute left-5 top-5 z-10 rounded-full border border-line bg-background px-3 py-1 font-mono text-[11px] text-muted">
           {String(index + 1).padStart(2, "0")} / {work.category}
         </span>
-        <div className="absolute inset-14 transition duration-700 group-hover:scale-105">
+        <div className="absolute inset-10 transition duration-700 sm:inset-14 group-hover:scale-105">
           <Image src={work.image} alt={`${work.title} logo`} fill sizes="(min-width: 768px) 45vw, 90vw" className="object-contain" />
         </div>
       </div>
 
       {/* details */}
-      <div className="flex flex-col p-8 sm:p-10">
+      <div className="flex flex-col p-6 sm:p-10">
         <h3 className="text-3xl font-extrabold text-white sm:text-4xl">{work.title}</h3>
         <p className="desc mt-4">{work.summary}</p>
 

@@ -16,7 +16,7 @@ const industries: { name: string; desc: string; icon: IconType }[] = [
 
 export default function Industries() {
   return (
-    <section id="industries" className="py-28">
+    <section id="industries" className="py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Industries"
@@ -24,13 +24,13 @@ export default function Industries() {
           description="We bring patterns that already work in your sector, so you avoid common pitfalls and reach launch sooner."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-px sm:mt-14 overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {industries.map(({ name, desc, icon: Icon }, i) => (
             <Reveal key={name} delay={(i % 4) * 70} className="bg-background">
-              <div className="group h-full p-7 transition-colors duration-300 hover:bg-primary">
+              <div className="group h-full p-5 transition-colors sm:p-7 duration-300 hover:bg-primary">
                 <Icon size={24} className="text-accent transition group-hover:text-black" />
-                <h3 className="mt-6 font-bold text-white transition group-hover:text-black">{name}</h3>
-                <p className="mt-1.5 text-sm text-muted transition group-hover:text-black/70">{desc}</p>
+                <h3 className="mt-5 text-sm font-bold text-white transition group-hover:text-black sm:mt-6 sm:text-base">{name}</h3>
+                <p className="mt-1.5 text-xs text-muted sm:text-sm transition group-hover:text-black/70">{desc}</p>
               </div>
             </Reveal>
           ))}

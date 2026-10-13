@@ -7,7 +7,7 @@ import WorkCard from "./work-card";
 
 export default function FeaturedWork() {
   return (
-    <section id="works" className="py-28">
+    <section id="works" className="py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading

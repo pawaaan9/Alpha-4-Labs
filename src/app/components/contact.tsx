@@ -6,7 +6,7 @@ import Reveal from "./reveal";
 // Closing call-to-action banner, shown at the bottom of most pages.
 export default function Contact() {
   return (
-    <section id="contact" className="py-24">
+    <section id="contact" className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-[2rem] bg-primary px-6 py-16 sm:px-14 sm:py-20">

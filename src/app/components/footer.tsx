@@ -8,9 +8,9 @@ import Logo from "./logo";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-auto overflow-hidden border-t border-line pt-20 text-sm text-muted">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:px-8">
-        <div>
+    <footer className="relative mt-auto overflow-hidden border-t border-line pt-14 text-sm text-muted sm:pt-20">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 sm:px-6 md:gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:px-8">
+        <div className="col-span-2 lg:col-span-1">
           <Logo size="lg" />
           <p className="mt-5 max-w-xs leading-relaxed">{site.tagline}</p>
           <Link
@@ -45,10 +45,19 @@ export default function Footer() {
       </div>
 
       {/* oversized outlined wordmark */}
-      <div aria-hidden className="mx-auto mt-20 max-w-7xl select-none px-4 sm:px-6 lg:px-8">
-        <p className="text-outline whitespace-nowrap text-center text-[15.5vw] font-extrabold uppercase leading-[0.8] tracking-tighter lg:text-[12.5rem]">
-          Alpha4Labs
-        </p>
+      <div aria-hidden className="mx-auto mt-14 max-w-7xl select-none px-4 sm:mt-20 sm:px-6 lg:px-8">
+        <svg viewBox="0 0 1000 150" className="block h-auto w-full">
+          <text
+            x="0"
+            y="128"
+            textLength="1000"
+            lengthAdjust="spacingAndGlyphs"
+            className="fill-transparent font-extrabold uppercase"
+            style={{ fontSize: 172, stroke: "rgba(237,237,237,0.22)", strokeWidth: 1.2 }}
+          >
+            Alpha4Labs
+          </text>
+        </svg>
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

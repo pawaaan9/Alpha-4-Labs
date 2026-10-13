@@ -10,7 +10,7 @@ const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["lati
 
 export const metadata: Metadata = {
   title: {
-    default: "Alpha 4 Labs | Software Engineering & Digital Products",
+    default: "Alpha 4 Labs | Your End-to-End Technology Partner",
     template: "%s | Alpha 4 Labs",
   },
   description:

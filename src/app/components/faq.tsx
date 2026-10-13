@@ -5,7 +5,7 @@ import SectionHeading from "./section-heading";
 
 export default function Faq() {
   return (
-    <section id="faq" className="py-28">
+    <section id="faq" className="py-16 sm:py-24 lg:py-28">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_1.5fr] lg:px-8">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading

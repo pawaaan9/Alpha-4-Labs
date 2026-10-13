@@ -2,5 +2,5 @@
 export const site = {
   name: "Alpha 4 Labs",
   email: "info@alpha4labs.com",
-  tagline: "Software engineering studio building web, mobile, cloud and AI solutions for growing businesses.",
+  tagline: "Your end-to-end technology partner for web, mobile, cloud and AI solutions that help businesses grow.",
 };

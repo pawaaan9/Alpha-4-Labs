@@ -56,7 +56,7 @@ export default async function ServicePage({ params }: { params: ParamsPromise })
       </PageHeader>
 
       {/* capabilities */}
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">What we offer</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: { params: ParamsPromise })
       </section>
 
       {/* deliverables + tech */}
-      <section className="border-y border-line bg-surface py-24">
+      <section className="border-y border-line bg-surface py-16 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div>
             <h2 className="text-3xl font-extrabold text-white">What you get</h2>
@@ -110,7 +110,7 @@ export default async function ServicePage({ params }: { params: ParamsPromise })
       <Process />
 
       {/* other services */}
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-white">Other services</h2>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">

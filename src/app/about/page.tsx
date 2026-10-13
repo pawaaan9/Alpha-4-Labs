@@ -8,7 +8,7 @@ import WhyUs from "../components/why-us";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Alpha 4 Labs is a software engineering studio that designs and builds digital products for growing businesses.",
+  description: "Alpha 4 Labs is an end-to-end technology partner that designs and builds digital products for growing businesses.",
 };
 
 const values = [
@@ -28,11 +28,11 @@ export default function AboutPage() {
             Engineers and designers who care about <span className="text-accent">outcomes</span>.
           </>
         }
-        description="Alpha 4 Labs is a software engineering studio. We partner with startups and growing businesses to design, build and scale web platforms, mobile apps, cloud infrastructure and AI solutions."
+        description="Alpha 4 Labs is an end-to-end technology partner. We work alongside startups and growing businesses to design, build and scale web platforms, mobile apps, cloud infrastructure and AI solutions."
       />
 
       {/* story */}
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <Reveal>
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Our story</h2>

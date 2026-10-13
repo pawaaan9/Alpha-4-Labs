@@ -14,7 +14,7 @@ export default function PageHeader({ crumbs, eyebrow, title, description, childr
   return (
     <section className="relative isolate overflow-hidden border-b border-line">
       <div aria-hidden className="bg-grid absolute inset-0 -z-10" />
-      <div className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 sm:pt-14 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 pb-14 pt-8 sm:px-6 sm:pb-20 sm:pt-14 lg:px-8">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1.5 font-mono text-xs text-muted">
             <li>
@@ -34,7 +34,7 @@ export default function PageHeader({ crumbs, eyebrow, title, description, childr
         </nav>
 
         {eyebrow && (
-          <span className="eyebrow mt-12">
+          <span className="eyebrow mt-10 sm:mt-12">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             {eyebrow}
           </span>

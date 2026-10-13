@@ -26,7 +26,7 @@ export default function ContactPage() {
         description="Share a few details about your project and we'll get back to you with ideas, a plan and an estimate."
       />
 
-      <section className="py-20">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.5fr_1fr] lg:px-8">
           <ContactForm />
 

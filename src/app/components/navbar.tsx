@@ -3,23 +3,36 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FiArrowRight, FiArrowUpRight, FiChevronDown, FiMail, FiMenu, FiX } from "react-icons/fi";
+import { FiArrowRight, FiArrowUpRight, FiChevronDown } from "react-icons/fi";
 import { navLinks } from "../data/nav";
 import { services } from "../data/services";
 import { site } from "../data/site";
 import Logo from "./logo";
+
+type Pill = { left: number; width: number } | null;
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [pill, setPill] = useState<Pill>(null); // hover highlight that glides between links
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const y = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setScrolled(y > 24);
+      setProgress(max > 0 ? Math.min(1, y / max) : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Close menus whenever the route changes.
@@ -27,6 +40,18 @@ export default function Navbar() {
     setMobileOpen(false);
     setMegaOpen(false);
   }, [pathname]);
+
+  // Escape closes any open menu.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        setMegaOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   // Lock page scroll while the full-screen mobile menu is open.
   useEffect(() => {
@@ -37,114 +62,150 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const isActive = (href: string) => !href.includes("#") && pathname.startsWith(href);
+  const movePill = (e: React.MouseEvent<HTMLElement>) =>
+    setPill({ left: e.currentTarget.offsetLeft, width: e.currentTarget.offsetWidth });
+
+  const solid = scrolled || megaOpen || mobileOpen;
 
   return (
-    <header className="sticky top-0 z-50">
-      {/* top info bar */}
+    <header className="sticky top-0 z-50 mx-auto w-full max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
+      {/* floating pill bar */}
       <div
-        className={`hidden overflow-hidden border-b border-line bg-background text-xs text-muted transition-all duration-300 lg:block ${
-          scrolled ? "max-h-0 border-transparent" : "max-h-10"
+        className={`relative flex h-[60px] items-center justify-between rounded-full border pl-4 pr-2 transition-all duration-500 sm:pl-5 ${
+          solid
+            ? "border-line bg-surface/90 shadow-2xl shadow-black/60 backdrop-blur-xl"
+            : "border-white/[0.06] bg-white/[0.02] backdrop-blur-md"
         }`}
+        onMouseLeave={() => {
+          setMegaOpen(false);
+          setPill(null);
+        }}
       >
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <p className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            Now taking on new projects
-          </p>
-          <a href={`mailto:${site.email}`} className="flex items-center gap-1.5 transition hover:text-white">
-            <FiMail /> {site.email}
-          </a>
-        </div>
-      </div>
+        <Logo />
 
-      {/* main bar */}
-      <div
-        className={`border-b transition-colors duration-300 ${
-          scrolled || megaOpen ? "border-line bg-background/95 backdrop-blur" : "border-transparent bg-transparent"
-        }`}
-        onMouseLeave={() => setMegaOpen(false)}
-      >
-        <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Logo />
-
-          <ul className="hidden items-center gap-1 text-sm lg:flex">
-            <li onMouseEnter={() => setMegaOpen(true)}>
-              <button
-                type="button"
-                aria-expanded={megaOpen}
-                onClick={() => setMegaOpen((v) => !v)}
-                className={`flex items-center gap-1 rounded-full px-4 py-2 font-medium transition hover:text-white ${
-                  megaOpen || pathname.startsWith("/services") ? "text-white" : "text-muted"
+        {/* desktop links */}
+        <ul className="relative hidden items-center text-sm lg:flex">
+          <span
+            aria-hidden
+            className={`absolute top-1/2 h-10 -translate-y-1/2 rounded-full bg-white/[0.07] transition-all duration-300 ease-out ${
+              pill ? "opacity-100" : "opacity-0"
+            }`}
+            style={pill ? { left: pill.left, width: pill.width } : undefined}
+          />
+          <li
+            onMouseEnter={(e) => {
+              movePill(e);
+              setMegaOpen(true);
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={megaOpen}
+              onClick={() => setMegaOpen((v) => !v)}
+              className={`relative z-10 flex items-center gap-1 px-4 py-2.5 font-medium transition hover:text-white ${
+                megaOpen || pathname.startsWith("/services") ? "text-white" : "text-muted"
+              }`}
+            >
+              Services
+              <FiChevronDown className={`transition duration-300 ${megaOpen ? "rotate-180 text-primary" : ""}`} />
+            </button>
+          </li>
+          {navLinks.map((link) => (
+            <li
+              key={link.href}
+              onMouseEnter={(e) => {
+                movePill(e);
+                setMegaOpen(false);
+              }}
+            >
+              <Link
+                href={link.href}
+                className={`relative z-10 block px-4 py-2.5 font-medium transition hover:text-white ${
+                  isActive(link.href) ? "text-white" : "text-muted"
                 }`}
               >
-                Services
-                <FiChevronDown className={`transition ${megaOpen ? "rotate-180" : ""}`} />
-              </button>
+                {link.label}
+                {isActive(link.href) && (
+                  <span className="absolute bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-primary" />
+                )}
+              </Link>
             </li>
-            {navLinks.map((link) => (
-              <li key={link.href} onMouseEnter={() => setMegaOpen(false)}>
-                <Link
-                  href={link.href}
-                  className={`relative rounded-full px-4 py-2 font-medium transition hover:text-white ${
-                    isActive(link.href) ? "text-white" : "text-muted"
-                  }`}
-                >
-                  {link.label}
-                  {isActive(link.href) && (
-                    <span className="absolute -bottom-[23px] left-4 right-4 h-0.5 bg-primary" />
-                  )}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          ))}
+        </ul>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-primary-hover"
-            >
-              Contact us
-              <FiArrowRight className="transition group-hover:translate-x-0.5" />
-            </Link>
-          </div>
+        <div className="flex items-center gap-2">
+          {/* desktop CTA: label + arrow bubble that turns on hover */}
+          <Link
+            href="/contact"
+            className="group hidden h-11 items-center gap-3 rounded-full bg-primary pl-5 pr-1.5 text-sm font-semibold text-black transition hover:bg-primary-hover lg:inline-flex"
+          >
+            Let&rsquo;s talk
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-primary transition duration-300 group-hover:-rotate-45">
+              <FiArrowRight />
+            </span>
+          </Link>
 
+          {/* mobile: two-line menu button that morphs into an X */}
           <button
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
-            className="inline-flex items-center rounded-lg border border-line p-2 text-white lg:hidden"
             onClick={() => setMobileOpen((v) => !v)}
+            className={`flex h-11 w-11 items-center justify-center rounded-full transition lg:hidden ${
+              mobileOpen ? "bg-primary" : "bg-white/[0.06] hover:bg-white/10"
+            }`}
           >
-            {mobileOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            <span className="relative block h-3 w-5">
+              <span
+                className={`absolute left-0 h-0.5 w-5 rounded-full transition-all duration-300 ${
+                  mobileOpen ? "top-[5px] rotate-45 bg-black" : "top-0 bg-white"
+                }`}
+              />
+              <span
+                className={`absolute right-0 h-0.5 rounded-full transition-all duration-300 ${
+                  mobileOpen ? "bottom-[5px] w-5 -rotate-45 bg-black" : "bottom-0 w-3 bg-white"
+                }`}
+              />
+            </span>
           </button>
-        </nav>
+        </div>
+
+        {/* reading progress along the bottom edge of the pill */}
+        <span
+          aria-hidden
+          className={`pointer-events-none absolute inset-x-8 -bottom-px h-px origin-left bg-primary transition-opacity duration-300 ${
+            scrolled && !mobileOpen ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transform: `scaleX(${progress})` }}
+        />
 
         {/* services mega menu (desktop) */}
         {megaOpen && (
-          <div className="hidden border-t border-line lg:block">
-            <div className="mx-auto grid max-w-7xl grid-cols-[1fr_300px] gap-8 px-8 py-8">
-              <ul className="grid grid-cols-3 gap-2">
-                {services.map(({ slug, title, short, icon: Icon }) => (
-                  <li key={slug}>
+          <div className="absolute inset-x-0 top-full hidden pt-3 lg:block">
+            <div className="animate-float-in grid grid-cols-[1fr_280px] gap-3 rounded-3xl border border-line bg-surface/95 p-3 shadow-2xl shadow-black/60 backdrop-blur-xl">
+              <ul className="grid grid-cols-2 gap-1 xl:grid-cols-3">
+                {services.map(({ slug, title, short, icon: Icon }, i) => (
+                  <li key={slug} className="animate-float-in" style={{ animationDelay: `${i * 35}ms` }}>
                     <Link
                       href={`/services/${slug}`}
-                      className="group flex gap-4 rounded-xl p-4 transition hover:bg-surface-2"
+                      className="group flex gap-4 rounded-2xl p-4 transition hover:bg-white/[0.04]"
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-accent transition group-hover:border-primary group-hover:bg-primary group-hover:text-black">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-background text-accent transition duration-300 group-hover:rotate-[-8deg] group-hover:border-primary group-hover:bg-primary group-hover:text-black">
                         <Icon size={18} />
                       </span>
                       <span>
-                        <span className="block text-sm font-semibold text-white">{title}</span>
+                        <span className="flex items-center gap-1 text-sm font-semibold text-white">
+                          {title}
+                          <FiArrowUpRight className="opacity-0 transition group-hover:opacity-100" />
+                        </span>
                         <span className="mt-1 block text-xs leading-relaxed text-muted">{short}</span>
                       </span>
                     </Link>
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-col justify-between rounded-2xl bg-primary p-6">
-                <div>
+              <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-primary p-6">
+                <span aria-hidden className="absolute -bottom-16 -right-16 h-44 w-44 rounded-full border-[28px] border-black/10" />
+                <div className="relative">
                   <p className="font-mono text-xs uppercase tracking-wider text-black/60">Not sure where to start?</p>
                   <p className="mt-3 text-lg font-bold leading-snug text-black">
                     Tell us about your idea and we&rsquo;ll suggest the right approach.
@@ -152,7 +213,7 @@ export default function Navbar() {
                 </div>
                 <Link
                   href="/contact"
-                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white"
+                  className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white"
                 >
                   Book a free call <FiArrowUpRight />
                 </Link>
@@ -162,48 +223,79 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* full-screen mobile menu */}
+      {/* full-screen mobile menu (sits behind the pill so the close button stays on top) */}
       {mobileOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto bg-background lg:hidden">
-          <div className="px-4 py-8 sm:px-6">
-            <p className="eyebrow">Services</p>
-            <ul className="mt-4 grid gap-1 sm:grid-cols-2">
-              {services.map(({ slug, title, icon: Icon }) => (
-                <li key={slug}>
-                  <Link
-                    href={`/services/${slug}`}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-3 py-3 text-white hover:bg-surface-2"
-                  >
-                    <Icon className="text-accent" /> {title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        <div className="fixed inset-0 -z-10 overflow-y-auto bg-background lg:hidden">
+          <div aria-hidden className="bg-grid absolute inset-0" />
+          <nav className="relative flex min-h-full flex-col px-5 pb-8 pt-28 sm:px-8">
+            <p className="eyebrow animate-float-in">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              Menu
+            </p>
 
-            <ul className="mt-8 border-t border-line pt-6">
-              {navLinks.map((link, i) => (
-                <li key={link.href}>
+            <ul className="mt-4">
+              {[...navLinks, { href: "/contact", label: "Contact" }].map((link, i) => (
+                <li key={link.href} className="animate-float-in" style={{ animationDelay: `${60 + i * 60}ms` }}>
                   <Link
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-baseline gap-4 py-3 text-3xl font-bold text-white"
+                    className="group flex items-center justify-between border-b border-line py-4"
                   >
-                    <span className="font-mono text-xs text-muted">0{i + 1}</span>
-                    {link.label}
+                    <span className="flex items-baseline gap-4">
+                      <span className="font-mono text-xs text-primary">0{i + 1}</span>
+                      <span
+                        className={`text-4xl font-extrabold tracking-tight transition group-hover:text-primary sm:text-5xl ${
+                          isActive(link.href) ? "text-primary" : "text-white"
+                        }`}
+                      >
+                        {link.label}
+                      </span>
+                    </span>
+                    <FiArrowUpRight size={22} className="text-muted transition group-hover:rotate-45 group-hover:text-primary" />
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <Link
-              href="/contact"
-              onClick={() => setMobileOpen(false)}
-              className="mt-8 flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 font-semibold text-black"
+            <div className="animate-float-in mt-10" style={{ animationDelay: "420ms" }}>
+              <p className="eyebrow">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                Services
+              </p>
+              <ul className="mt-4 grid grid-cols-2 gap-2">
+                {services.map(({ slug, title, icon: Icon }) => (
+                  <li key={slug}>
+                    <Link
+                      href={`/services/${slug}`}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex h-full flex-col gap-3 rounded-2xl border border-line bg-surface p-4 text-sm font-medium text-white transition active:border-primary"
+                    >
+                      <Icon size={18} className="text-primary" />
+                      {title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div
+              className="animate-float-in relative mt-10 overflow-hidden rounded-3xl bg-primary p-6"
+              style={{ animationDelay: "500ms" }}
             >
-              Contact us <FiArrowRight />
-            </Link>
-          </div>
+              <span aria-hidden className="absolute -bottom-14 -right-14 h-40 w-40 rounded-full border-[24px] border-black/10" />
+              <p className="relative text-2xl font-extrabold leading-tight text-black">Have a project in mind?</p>
+              <a href={`mailto:${site.email}`} className="relative mt-2 block text-sm font-medium text-black/70">
+                {site.email}
+              </a>
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="relative mt-5 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white"
+              >
+                Start a project <FiArrowRight />
+              </Link>
+            </div>
+          </nav>
         </div>
       )}
     </header>

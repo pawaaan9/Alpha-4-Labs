@@ -56,9 +56,9 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
         <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-line lg:grid-cols-4">
           <Fact label="Client" value={work.title} />
           <Fact label="Industry" value={work.category} />
-          <Fact label="Services" value={work.services.join(", ")} />
           <Fact
             label="Live site"
+            className="col-span-2 lg:col-span-1"
             value={
               work.href ? (
                 <a href={work.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-white hover:text-accent">
@@ -69,19 +69,23 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
               )
             }
           />
+          <Fact label="Services" value={work.services.join(", ")} className="col-span-2 lg:col-span-1" />
         </dl>
       </section>
 
       {/* hero visual */}
-      <section className="py-16">
+      <section className="py-10 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="bg-dots relative aspect-[16/9] overflow-hidden rounded-3xl border border-line bg-surface sm:aspect-[21/9]">
-              <div className="absolute inset-10 sm:inset-16">
-                <Image src={work.image} alt={`${work.title} logo`} fill priority sizes="90vw" className="object-contain" />
+            <div className="relative">
+              <div className="bg-dots relative aspect-[4/3] overflow-hidden rounded-3xl border border-line bg-surface sm:aspect-[21/9]">
+                <div className="absolute inset-8 sm:inset-16">
+                  <Image src={work.image} alt={`${work.title} logo`} fill priority sizes="90vw" className="object-contain" />
+                </div>
               </div>
+              {/* tags sit under the image on phones, over its corner from sm up */}
               {work.tags.length > 0 && (
-                <ul className="absolute bottom-5 left-5 flex flex-wrap gap-2">
+                <ul className="mt-4 flex flex-wrap gap-2 sm:absolute sm:bottom-5 sm:left-5 sm:mt-0">
                   {work.tags.map((t) => (
                     <li key={t} className="rounded-full border border-line bg-background px-3 py-1 font-mono text-[11px] text-muted">
                       {t}
@@ -95,9 +99,9 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
       </section>
 
       {/* overview / challenge / solution */}
-      <section className="py-16">
+      <section className="py-10 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
-          <aside className="lg:sticky lg:top-32 lg:self-start">
+          <aside className="hidden lg:sticky lg:top-32 lg:block lg:self-start">
             <p className="eyebrow">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               The story
@@ -113,7 +117,7 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
             </ul>
           </aside>
 
-          <div className="space-y-16">
+          <div className="space-y-12 sm:space-y-16">
             <StoryBlock id="overview" title="Overview" text={work.overview} />
             <div className="grid gap-5 md:grid-cols-2">
               <Reveal>
@@ -170,10 +174,10 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
 
       {/* quote */}
       {work.quote && (
-        <section className="border-y border-line py-24">
+        <section className="border-y border-line py-16 sm:py-24">
           <Reveal className="mx-auto max-w-4xl px-4 text-center sm:px-6">
             <span className="font-mono text-6xl leading-none text-primary">&ldquo;</span>
-            <p className="mt-2 text-3xl font-extrabold leading-tight text-white sm:text-5xl">{work.quote}</p>
+            <p className="mt-2 text-2xl font-extrabold leading-tight text-white sm:text-5xl">{work.quote}</p>
             <p className="mt-6 font-mono text-xs uppercase tracking-wider text-muted">{work.title}</p>
           </Reveal>
         </section>
@@ -181,7 +185,7 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
 
       {/* next project */}
       {next && (
-        <section className="py-16">
+        <section className="py-10 sm:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Link href={`/work/${next.slug}`} className="group flex items-center justify-between gap-6 rounded-3xl border border-line bg-surface p-8 transition hover:border-primary">
               <div>
@@ -201,9 +205,9 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
   );
 }
 
-function Fact({ label, value }: { label: string; value: React.ReactNode }) {
+function Fact({ label, value, className = "" }: { label: string; value: React.ReactNode; className?: string }) {
   return (
-    <div className="bg-background px-4 py-6 sm:px-6 lg:px-8">
+    <div className={`bg-background px-4 py-5 sm:px-6 sm:py-6 lg:px-8 ${className}`}>
       <dt className="font-mono text-[11px] uppercase tracking-wider text-muted">{label}</dt>
       <dd className="mt-2 text-sm font-medium text-white">{value}</dd>
     </div>

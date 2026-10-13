@@ -4,7 +4,7 @@ import SectionHeading from "./section-heading";
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="py-28">
+    <section id="why-us" className="py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Why Alpha 4 Labs"

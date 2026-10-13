@@ -31,7 +31,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="py-28">
+    <section id="process" className="py-16 sm:py-24 lg:py-28">
       <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1.35fr] lg:px-8">
         {/* sticky intro on desktop */}
         <div className="lg:sticky lg:top-32 lg:self-start">
@@ -46,15 +46,20 @@ export default function Process() {
           </Button>
         </div>
 
-        <ol className="relative space-y-4 border-l border-line pl-8 sm:pl-12">
+        <ol className="relative space-y-4 sm:border-l sm:border-line sm:pl-12">
           {steps.map((s, i) => (
             <Reveal as="li" key={s.title} className="relative">
-              <span className="absolute -left-[49px] top-7 flex h-8 w-8 items-center justify-center rounded-full border border-primary bg-background font-mono text-xs font-semibold text-accent sm:-left-[65px]">
+              <span className="absolute -left-[65px] top-7 hidden h-8 w-8 items-center justify-center rounded-full border border-primary bg-background font-mono text-xs font-semibold text-accent sm:flex">
                 {i + 1}
               </span>
-              <div className="rounded-2xl border border-line bg-surface p-7 transition hover:border-white/20">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-2xl font-bold text-white">{s.title}</h3>
+              <div className="rounded-2xl border border-line bg-surface p-6 transition hover:border-white/20 sm:p-7">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary font-mono text-xs font-semibold text-accent sm:hidden">
+                      {i + 1}
+                    </span>
+                    <h3 className="text-2xl font-bold text-white">{s.title}</h3>
+                  </div>
                   <span className="rounded-full border border-line px-3 py-1 font-mono text-[11px] text-muted">{s.time}</span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{s.desc}</p>

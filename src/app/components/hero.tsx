@@ -32,18 +32,18 @@ function SpinningBadge() {
 
 export default function Hero() {
   return (
-    <section id="home" className="relative isolate overflow-hidden">
+    <section id="home" className="relative isolate flex min-h-[calc(100svh-72px)] items-center overflow-hidden">
       <div aria-hidden className="bg-grid absolute inset-0 -z-10" />
 
-      <div className="mx-auto max-w-7xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20 lg:px-8 lg:pb-28">
-        <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
+      <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-10">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <span className="eyebrow">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Software engineering studio
+              Your end-to-end technology partner
             </span>
 
-            <h1 className="heading-display mt-6 font-extrabold text-white">
+            <h1 className="heading-hero mt-5 font-extrabold text-white">
               We design &amp; build
               <br />
               <TypedWords words={words} />
@@ -51,13 +51,13 @@ export default function Hero() {
               <span className="text-outline">that perform.</span>
             </h1>
 
-            <p className="desc mt-7 max-w-xl">
+            <p className="desc mt-6 max-w-xl">
               Alpha 4 Labs partners with businesses to turn ideas into reliable digital products. One
               senior team covering design, engineering, cloud and AI, from the first sketch to launch
               and beyond.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact" arrow>
                 Start a project
               </Button>
@@ -66,7 +66,7 @@ export default function Hero() {
               </Button>
             </div>
 
-            <dl className="mt-12 grid max-w-lg grid-cols-3 divide-x divide-line border-y border-line">
+            <dl className="mt-10 grid max-w-lg grid-cols-3 divide-x divide-line border-y border-line">
               {highlights.map((h) => (
                 <div key={h.k} className="px-4 py-4 first:pl-0">
                   <dt className="text-sm font-bold text-white">{h.k}</dt>
@@ -80,7 +80,7 @@ export default function Hero() {
             <SpinningBadge />
             <Terminal />
 
-            <div className="animate-float absolute -bottom-7 -left-3 flex items-center gap-3 rounded-xl border border-line bg-surface-2 px-4 py-3 shadow-xl shadow-black/40 sm:-left-8">
+            <div className="animate-float absolute -bottom-7 left-3 flex items-center gap-3 rounded-xl border border-line bg-surface-2 px-4 py-3 shadow-xl shadow-black/40 sm:-left-8">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-400/15 text-emerald-400">
                 <FiCheckCircle size={18} />
               </span>
@@ -90,9 +90,9 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="animate-float-delayed absolute -right-3 -top-5 flex items-center gap-2 rounded-xl bg-primary px-3.5 py-2 shadow-xl shadow-black/40 sm:-right-6">
-              <FiZap className="text-black" size={15} />
-              <span className="text-xs font-semibold text-black">Built for performance</span>
+            <div className="sm-float-delayed absolute right-3 top-2 flex items-center gap-1.5 rounded-lg bg-primary px-2.5 py-1 sm:-right-6 sm:-top-5 sm:gap-2 sm:rounded-xl sm:px-3.5 sm:py-2 sm:shadow-xl sm:shadow-black/40">
+              <FiZap className="text-black" size={13} />
+              <span className="text-[11px] font-semibold text-black sm:text-xs">Built for performance</span>
             </div>
           </div>
         </div>

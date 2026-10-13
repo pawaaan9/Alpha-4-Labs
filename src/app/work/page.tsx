@@ -20,7 +20,7 @@ export default function WorkPage() {
         description="Real products, live and in use. Explore the challenge, our approach and what we delivered for each one."
       />
 
-      <section className="py-20">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
           {works.map((w, i) => (
             <Reveal key={w.slug}>
