@@ -24,7 +24,7 @@ export default function Faq() {
             <details key={f.q} className="group py-2" open={i === 0}>
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold text-white">
                 {f.q}
-                <span className="faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-accent transition group-open:border-primary group-open:bg-primary group-open:text-white">
+                <span className="faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-accent transition group-open:border-primary group-open:bg-primary group-open:text-black">
                   <FiPlus />
                 </span>
               </summary>

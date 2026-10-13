@@ -49,7 +49,7 @@ export default async function ServicePage({ params }: { params: ParamsPromise })
         </div>
         <span
           aria-hidden
-          className="absolute right-8 top-24 hidden h-40 w-40 items-center justify-center rounded-[2rem] bg-primary text-white lg:flex xl:right-[max(2rem,calc((100vw-80rem)/2+2rem))]"
+          className="absolute right-8 top-24 hidden h-40 w-40 items-center justify-center rounded-[2rem] bg-primary text-black lg:flex xl:right-[max(2rem,calc((100vw-80rem)/2+2rem))]"
         >
           <Icon size={64} />
         </span>
@@ -81,7 +81,7 @@ export default async function ServicePage({ params }: { params: ParamsPromise })
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex items-center gap-3 rounded-xl border border-line bg-background px-4 py-3.5 text-sm text-white">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-white">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-black">
                     <FiCheck size={13} />
                   </span>
                   {d}

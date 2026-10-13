@@ -32,11 +32,11 @@ export default function TechStack() {
                 aria-selected={i === active}
                 onClick={() => setActive(i)}
                 className={`flex shrink-0 items-center justify-between gap-6 rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
-                  i === active ? "bg-primary text-white" : "text-muted hover:bg-surface-2 hover:text-white"
+                  i === active ? "bg-primary text-black" : "text-muted hover:bg-surface-2 hover:text-white"
                 }`}
               >
                 {g.title}
-                <span className={`font-mono text-[11px] ${i === active ? "text-white/80" : "text-muted/70"}`}>
+                <span className={`font-mono text-[11px] ${i === active ? "text-black/60" : "text-muted/70"}`}>
                   {String(g.items.length).padStart(2, "0")}
                 </span>
               </button>

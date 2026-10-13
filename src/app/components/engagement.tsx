@@ -39,32 +39,32 @@ export default function Engagement() {
             <Reveal key={m.name} delay={i * 100}>
               <div
                 className={`flex h-full flex-col rounded-3xl border p-8 ${
-                  m.featured ? "border-primary bg-primary text-white" : "border-line bg-surface"
+                  m.featured ? "border-primary bg-primary text-black" : "border-line bg-surface"
                 }`}
               >
                 {m.featured && (
-                  <span className="mb-5 w-fit rounded-full bg-white px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-primary">
+                  <span className="mb-5 w-fit rounded-full bg-black px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-primary">
                     Most popular
                   </span>
                 )}
-                <h3 className="text-2xl font-bold text-white">{m.name}</h3>
-                <p className={`mt-2 text-sm ${m.featured ? "text-white/80" : "text-muted"}`}>{m.best}</p>
+                <h3 className={`text-2xl font-bold ${m.featured ? "text-black" : "text-white"}`}>{m.name}</h3>
+                <p className={`mt-2 text-sm ${m.featured ? "text-black/70" : "text-muted"}`}>{m.best}</p>
                 <ul className="mt-8 space-y-3.5">
                   {m.points.map((p) => (
                     <li key={p} className="flex gap-3 text-sm">
                       <span
                         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-                          m.featured ? "bg-white text-primary" : "bg-surface-2 text-accent"
+                          m.featured ? "bg-black text-primary" : "bg-surface-2 text-accent"
                         }`}
                       >
                         <FiCheck size={12} />
                       </span>
-                      <span className={m.featured ? "text-white" : "text-foreground/85"}>{p}</span>
+                      <span className={m.featured ? "text-black" : "text-foreground/85"}>{p}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="mt-auto pt-10">
-                  <Button href="/contact" variant={m.featured ? "light" : "secondary"} arrow className="w-full">
+                  <Button href="/contact" variant={m.featured ? "dark" : "secondary"} arrow className="w-full">
                     Get a quote
                   </Button>
                 </div>

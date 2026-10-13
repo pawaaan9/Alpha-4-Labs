@@ -125,9 +125,9 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
               </Reveal>
               <Reveal delay={100}>
                 <div id="solution" className="h-full scroll-mt-32 rounded-3xl bg-primary p-8">
-                  <span className="font-mono text-xs text-white/70">02 / Solution</span>
-                  <h2 className="mt-4 text-2xl font-bold text-white">Our solution</h2>
-                  <p className="mt-4 leading-relaxed text-white/90">{work.solution}</p>
+                  <span className="font-mono text-xs text-black/60">02 / Solution</span>
+                  <h2 className="mt-4 text-2xl font-bold text-black">Our solution</h2>
+                  <p className="mt-4 leading-relaxed text-black/80">{work.solution}</p>
                 </div>
               </Reveal>
             </div>
@@ -188,7 +188,7 @@ export default async function WorkDetailPage({ params }: { params: ParamsPromise
                 <p className="font-mono text-xs uppercase tracking-wider text-muted">Next project</p>
                 <p className="mt-2 text-3xl font-extrabold text-white">{next.title}</p>
               </div>
-              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-white transition group-hover:rotate-45 group-hover:border-primary group-hover:bg-primary">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-white transition group-hover:rotate-45 group-hover:border-primary group-hover:bg-primary group-hover:text-black">
                 <FiArrowUpRight size={22} />
               </span>
             </Link>

@@ -11,11 +11,11 @@ export default function Footer() {
     <footer className="relative mt-auto overflow-hidden border-t border-line pt-20 text-sm text-muted">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:px-8">
         <div>
-          <Logo />
+          <Logo size="lg" />
           <p className="mt-5 max-w-xs leading-relaxed">{site.tagline}</p>
           <Link
             href="/contact"
-            className="group mt-6 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-semibold text-white transition hover:border-primary hover:bg-primary"
+            className="group mt-6 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-semibold text-white transition hover:border-primary hover:bg-primary hover:text-black"
           >
             Start a project <FiArrowUpRight className="transition group-hover:rotate-45" />
           </Link>
@@ -56,7 +56,7 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <a href="#" className="group inline-flex items-center gap-2 transition hover:text-white">
             Back to top
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line transition group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-line transition group-hover:border-primary group-hover:bg-primary group-hover:text-black">
               <FiArrowUp />
             </span>
           </a>

@@ -32,9 +32,9 @@ export default function ContactPage() {
 
           <aside className="space-y-6">
             <div className="rounded-3xl bg-primary p-8">
-              <FiMail size={24} className="text-white" />
-              <p className="mt-6 font-mono text-xs uppercase tracking-wider text-white/75">Prefer email?</p>
-              <a href={`mailto:${site.email}`} className="mt-2 block break-all text-xl font-bold text-white hover:underline">
+              <FiMail size={24} className="text-black" />
+              <p className="mt-6 font-mono text-xs uppercase tracking-wider text-black/65">Prefer email?</p>
+              <a href={`mailto:${site.email}`} className="mt-2 block break-all text-xl font-bold text-black hover:underline">
                 {site.email}
               </a>
             </div>

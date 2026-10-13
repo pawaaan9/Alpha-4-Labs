@@ -23,7 +23,7 @@ function SpinningBadge() {
           <textPath href="#badge-circle">Design · Build · Launch · Scale ·</textPath>
         </text>
       </svg>
-      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-white">
+      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-black">
         <FiArrowDown />
       </span>
     </div>
@@ -91,8 +91,8 @@ export default function Hero() {
             </div>
 
             <div className="animate-float-delayed absolute -right-3 -top-5 flex items-center gap-2 rounded-xl bg-primary px-3.5 py-2 shadow-xl shadow-black/40 sm:-right-6">
-              <FiZap className="text-white" size={15} />
-              <span className="text-xs font-semibold text-white">Built for performance</span>
+              <FiZap className="text-black" size={15} />
+              <span className="text-xs font-semibold text-black">Built for performance</span>
             </div>
           </div>
         </div>

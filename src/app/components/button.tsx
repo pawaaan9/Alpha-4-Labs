@@ -4,16 +4,17 @@ import { FiArrowRight } from "react-icons/fi";
 type Props = {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "light";
+  variant?: "primary" | "secondary" | "light" | "dark";
   arrow?: boolean;
   external?: boolean;
   className?: string;
 };
 
 const styles = {
-  primary: "bg-primary text-white hover:bg-primary-hover",
+  primary: "bg-primary text-black hover:bg-primary-hover",
   secondary: "border border-line text-white hover:border-white/30 hover:bg-white/5",
   light: "bg-white text-background hover:bg-white/90",
+  dark: "bg-black text-white hover:bg-black/80",
 };
 
 export default function Button({ href, children, variant = "primary", arrow, external, className = "" }: Props) {

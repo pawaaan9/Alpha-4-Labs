@@ -28,9 +28,9 @@ export default function Industries() {
           {industries.map(({ name, desc, icon: Icon }, i) => (
             <Reveal key={name} delay={(i % 4) * 70} className="bg-background">
               <div className="group h-full p-7 transition-colors duration-300 hover:bg-primary">
-                <Icon size={24} className="text-accent transition group-hover:text-white" />
-                <h3 className="mt-6 font-bold text-white">{name}</h3>
-                <p className="mt-1.5 text-sm text-muted transition group-hover:text-white/80">{desc}</p>
+                <Icon size={24} className="text-accent transition group-hover:text-black" />
+                <h3 className="mt-6 font-bold text-white transition group-hover:text-black">{name}</h3>
+                <p className="mt-1.5 text-sm text-muted transition group-hover:text-black/70">{desc}</p>
               </div>
             </Reveal>
           ))}

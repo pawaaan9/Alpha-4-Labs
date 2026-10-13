@@ -104,7 +104,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-3 lg:flex">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover"
+              className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-primary-hover"
             >
               Contact us
               <FiArrowRight className="transition group-hover:translate-x-0.5" />
@@ -132,7 +132,7 @@ export default function Navbar() {
                       href={`/services/${slug}`}
                       className="group flex gap-4 rounded-xl p-4 transition hover:bg-surface-2"
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-accent transition group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-accent transition group-hover:border-primary group-hover:bg-primary group-hover:text-black">
                         <Icon size={18} />
                       </span>
                       <span>
@@ -145,14 +145,14 @@ export default function Navbar() {
               </ul>
               <div className="flex flex-col justify-between rounded-2xl bg-primary p-6">
                 <div>
-                  <p className="font-mono text-xs uppercase tracking-wider text-white/70">Not sure where to start?</p>
-                  <p className="mt-3 text-lg font-bold leading-snug text-white">
+                  <p className="font-mono text-xs uppercase tracking-wider text-black/60">Not sure where to start?</p>
+                  <p className="mt-3 text-lg font-bold leading-snug text-black">
                     Tell us about your idea and we&rsquo;ll suggest the right approach.
                   </p>
                 </div>
                 <Link
                   href="/contact"
-                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-background"
+                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white"
                 >
                   Book a free call <FiArrowUpRight />
                 </Link>
@@ -199,7 +199,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-8 flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 font-semibold text-white"
+              className="mt-8 flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 font-semibold text-black"
             >
               Contact us <FiArrowRight />
             </Link>

@@ -34,7 +34,7 @@ export default function ContactForm() {
 
   const chip = (active: boolean) =>
     `rounded-full border px-4 py-2 text-sm transition ${
-      active ? "border-primary bg-primary text-white" : "border-line text-muted hover:border-white/30 hover:text-white"
+      active ? "border-primary bg-primary text-black" : "border-line text-muted hover:border-white/30 hover:text-white"
     }`;
 
   const input =
@@ -85,7 +85,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-semibold text-white transition hover:bg-primary-hover sm:w-auto"
+        className="group mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-semibold text-black transition hover:bg-primary-hover sm:w-auto"
       >
         Send message
         <FiSend className="transition group-hover:translate-x-0.5" />

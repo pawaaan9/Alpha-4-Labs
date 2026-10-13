@@ -2,19 +2,19 @@
 
 /* Brand theme for Alpha 4 Labs: flat colours only, no gradients */
 :root {
-  --background: #0a0a0f;
-  --foreground: #ededf2;
+  --background: #050505;
+  --foreground: #ededed;
 }
 
 @theme inline {
   /* brand colors */
-  --color-primary: #8b5cf6; /* violet accent */
-  --color-primary-hover: #7c4dec;
-  --color-accent: #a78bfa; /* lighter violet for text on dark */
-  --color-surface: #111118; /* cards */
-  --color-surface-2: #18181f; /* raised cards / hover */
-  --color-line: #24242d; /* borders */
-  --color-muted: #9b9ba8; /* secondary text */
+  --color-primary: #fe6a00; /* brand orange, from the logo */
+  --color-primary-hover: #ff7f24;
+  --color-accent: #ff8c3a; /* lighter orange for text on dark */
+  --color-surface: #101010; /* cards */
+  --color-surface-2: #1a1a1a; /* raised cards / hover */
+  --color-line: #262626; /* borders */
+  --color-muted: #a3a3a3; /* secondary text */
 
   /* expose background/foreground + fonts */
   --color-background: var(--background);
@@ -37,7 +37,7 @@ h1, h2, h3, h4 {
 
 ::selection {
   background: var(--color-primary);
-  color: #fff;
+  color: #000;
 }
 
 /* Smooth scrolling for anchor links, offset for the sticky navbar */
@@ -62,7 +62,7 @@ section[id] { scroll-margin-top: 6rem; }
 /* Hollow, outlined text for large decorative words */
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(237, 237, 242, 0.22);
+  -webkit-text-stroke: 1px rgba(237, 237, 237, 0.22);
 }
 
 /* Small mono label above section headings */

@@ -32,7 +32,7 @@ export default function Services() {
                 <span className="absolute inset-x-0 bottom-0 h-0 bg-primary transition-all duration-500 group-hover:h-1" />
 
                 <div className="flex items-start justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-surface-2 text-accent transition duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-surface-2 text-accent transition duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-black">
                     <Icon size={22} />
                   </span>
                   <span className="font-mono text-xs text-muted">/0{i + 1}</span>
@@ -43,7 +43,7 @@ export default function Services() {
 
                 <div className="mt-auto flex items-end justify-between gap-4 pt-8">
                   <p className="font-mono text-[11px] text-muted/80">{tech.slice(0, 3).join(" · ")}</p>
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-white transition group-hover:rotate-45 group-hover:border-primary group-hover:bg-primary">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-white transition group-hover:rotate-45 group-hover:border-primary group-hover:bg-primary group-hover:text-black">
                     <FiArrowUpRight />
                   </span>
                 </div>
